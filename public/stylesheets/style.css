@@ -1,0 +1,99 @@
+
+body {
+  padding: 50px;
+  /*margin: 0px;*/
+  background-color: #ececec;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/** FONTS **/
+.franklin-gothic {
+	font-family: "Franklin Gothic Book", Arial;
+	font-weight: 800;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+div.full-page {
+	display: flex;
+	justify-content: center;
+	background-color: #656176;
+	height: 50vh;
+	width: 100%;
+}
+
+div.circle {
+	display: block;
+	-moz-border-radius: 50%; 
+    -webkit-border-radius: 50%;
+	border-radius: 50%;
+	margin-top: 25vh;
+	width: 14%;
+	height: 0;
+	padding-bottom: 50%;
+	background-color: #1B998B;
+	animation: bounceIn 2s;
+}
+
+div.markers {
+	width: 30px;
+	height: 30px;
+	border-radius: 50% 50% 50% 0;
+	background: #89849b;
+	position: relative;
+	transform: rotate(-45deg);
+	animation-name: bounce;
+	animation-fill-mode: both;
+	animation-duration: 1s;
+}
+
+div.markers:after {
+	content: '';
+	width: 14px;
+	height: 14px;
+	margin: 8px 0 0 8px;
+	background: #2f2f2f;
+	position: absolute;
+	border-radius: 50%;
+}
+
+div.center-container {
+	width:100%;
+	text-align: center;
+}
+
+img.contain {
+	display: block;
+	width: 80vw;
+	height: 80vh;
+	object-fit: contain;
+}
+
+.selectDisable {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	pointer-events: none;
+}
+
+@keyframes bounceIn {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(1.2);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+	}
+}

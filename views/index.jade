@@ -1,0 +1,28 @@
+extends layout
+
+block extraHeader
+	script(type='text/javascript', src='javascripts/fileselect.js')
+
+block content
+	div.container
+		div.row
+			div.col-lg-6.col-sm-6.col-12
+				div.jumbotron
+					h1.franklin-gothic.uppercase= title
+					
+
+
+			div.col-lg-6.col-sm-6.col-12
+				form(action="/", method="post", enctype="multipart/form-data")
+					div.input-group
+						label.input-group-btn
+							span.btn.btn-primary Browse...
+								input(type="file", name="displayImage" accept='image/*', style='display:none;')
+						input.form-control(type="text", readonly)
+					br
+					div.input-group
+						input.btn.btn-success.btn-file(type="submit")
+
+
+
+	

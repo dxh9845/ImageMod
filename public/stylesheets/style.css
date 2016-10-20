@@ -1,8 +1,11 @@
 
 body {
   padding: 50px;
+  height: 100vh;
+  background-color: #ececec!important;
   /*margin: 0px;*/
-  background-color: #ececec;
+  /*background-image: url('http://i.imgur.com/xQxHjAK.gif');*/
+  /*background-size: cover;*/
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -18,6 +21,22 @@ a {
 
 .uppercase {
 	text-transform: uppercase;
+}
+
+
+.greybox {
+	border-radius: 6px;
+	padding: 45px;
+	background-color: #fff;
+}
+
+div.jumbotron {
+	color: white;
+	background-color: black;
+}
+
+div.jumbotron h1 {
+	font-size: 3em;
 }
 
 div.full-page {
@@ -41,13 +60,18 @@ div.circle {
 	animation: bounceIn 2s;
 }
 
+
+.rotated {
+	transform: rotate(-45deg);
+}
+
 div.markers {
 	width: 30px;
 	height: 30px;
 	border-radius: 50% 50% 50% 0;
-	background: #89849b;
+	background: #F3B61F;
+	border: 2px solid black;
 	position: relative;
-	transform: rotate(-45deg);
 	animation-name: bounce;
 	animation-fill-mode: both;
 	animation-duration: 1s;
@@ -57,7 +81,7 @@ div.markers:after {
 	content: '';
 	width: 14px;
 	height: 14px;
-	margin: 8px 0 0 8px;
+	margin: 6px 0 0 6px;
 	background: #2f2f2f;
 	position: absolute;
 	border-radius: 50%;
@@ -82,6 +106,18 @@ img.contain {
 	-o-user-select: none;
 	user-select: none;
 	pointer-events: none;
+}
+
+.footer {
+	/*height: 75px;*/
+	color: white;
+	text-align: center;
+	background-color: black;
+}
+
+.footer > div:nth-child(2) {
+	border-left: 5px solid white;
+	border-right: 5px solid white;
 }
 
 @keyframes bounceIn {

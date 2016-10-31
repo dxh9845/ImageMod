@@ -2,6 +2,7 @@ extends layout
 
 block extraHeader
 	script(type='text/javascript', src='javascripts/fileselect.js')
+	script(type='text/javascript', src='javascripts/edit.js')
 
 block content
 	div.container(style='padding: 50px;')
@@ -11,15 +12,24 @@ block content
 					h1.franklin-gothic.uppercase= title
 					
 			div.col-lg-6.col-sm-6.col-12.greybox
-				form(action="/", method="post", enctype="multipart/form-data")
+				form#form(action="/imageProcess", method="post", enctype="multipart/form-data")
 					div.input-group
 						label.input-group-btn
 							span.btn.btn-primary Browse...
-								input(type="file", name="displayImage" accept='image/*', style='display:none;')
+								input#imagePhoto(type="file", name="displayImage" accept='image/*', style='display:none;')
 						input.form-control(type="text", readonly)
 					br
 					div.input-group
-						input.btn.btn-success.btn-file(type="submit")
+						input.btn.btn-success.btn-file#submit(value="Submit")
+
+	div.container-fluid.none
+		div.row
+			div.col-md-6.overlay.franklin-gothic(data-number='1')
+			div.col-md-6.overlay.franklin-gothic(data-number='2')
+		div.row
+			div.col-md-6.overlay.franklin-gothic(data-number='3')
+			div.col-md-6.overlay.franklin-gothic(data-number='4')
+
 
 
 

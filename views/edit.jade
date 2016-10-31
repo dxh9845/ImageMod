@@ -2,12 +2,16 @@ extends layout
 
 block extraHeader
 	script(type='text/javascript', src='javascripts/interact.min.js')
+	script(type='text/javascript', src='javascripts/edit.js')
 
 
 block content
-	img.contain.selectDisable(src="/tmp/" + root)
 	div.full-page
-		div.markers.draggable
+		li=JSON.stringify(file)
+		div#test
+		
+			//- img.contain.selectDisable(src="/tmp/" + root)
+			//div.markers.draggable
 	//div.navbar.navbar-fixed-bottom.footer.franklin-gothic.uppercase
 		div.col-lg-4.col-sm-4
 			h3 "Step 1"
@@ -15,53 +19,43 @@ block content
 			h3 "Step 2"
 		div.col-lg-4.col-sm-4
 			h3 "Step 3"
+	script(type='text/javascript').
+			var file = !{JSON.stringify(blobber)}	
 
-	span.rotated
-		
+			console.log(file);
+			var canvas = document.createElement('canvas'),
+			    ctx = canvas.getContext('2d'),
+			    parts = [],
+			    img = new Image(),
+			    url = window.URL || window.webkitURL,
+			    src = url.createObjectURL(new File([file], "image"))
+
+			  img.src = src;
+			  img.onload = function() {
+			    var w2 = img.width / 2, // 130
+			      h2 = img.height / 2; // 40
+
+			    for (var i = 0; i < 4; i++) {
+
+			      var x = (-w2 * i) % (w2 * 2),
+			        y = (h2 * i) <= h2 ? 0 : -h2;
 
 
-	script.
-		// target elements with the "draggable" class
-		interact('.draggable')
-		  .draggable({
-			// enable inertial throwing
-			inertia: {
-			resistance: 30,
-			minSpeed: 200,
-			endSpeed: 100
-		  },
-			// keep the element within the area of it's parent
-			restrict: {
-			  restriction: document.getElementsByClassName('contain')[0],
-			  endOnly: false,
-			  elementRect: { top: 1, left: .4, bottom: .97, right: .6 }
-			},
-			// enable autoScroll
-			autoScroll: true,
+			      canvas.width = w2;
+			      canvas.height = h2;
 
-			// call this function on every dragmove event
-			onmove: dragMoveListener,
-			// call this function on every dragend event
-			onend: function(event) {
-			  console.log(interact('.draggable').getRect('div.marker'));
-			}
-		  });
+			      ctx.drawImage(this, x, y, w2 * 2, h2 * 2); // img, x, y, w, h
+			      parts.push(canvas.toDataURL()); // ("image/jpeg") for jpeg
 
-		function dragMoveListener (event) {
-			var target = event.target,
-				// keep the dragged position in the data-x/data-y attributes
-				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-			// translate the element
-			target.style.webkitTransform =
-			target.style.transform =
-			  'translate(' + x + 'px, ' + y + 'px) rotate(-45deg)';
+			      // ---------- JUST TO TEST
+			      var slicedImage = document.createElement("img")
+			      slicedImage.src = parts[i];
+			      var div = document.getElementById("test");
+			      div.appendChild(slicedImage);
+			      // ----------
 
-			// update the posiion attributes
-			target.setAttribute('data-x', x);
-			target.setAttribute('data-y', y);
-		}
-
-		// this is used later in the resizing and gesture demos
-		window.dragMoveListener = dragMoveListener;
+			    }
+			    console.log(parts);
+			    url.revokeObjectURL(src);
+			  }
